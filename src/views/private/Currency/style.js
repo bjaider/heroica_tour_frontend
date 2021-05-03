@@ -1,17 +1,22 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import {black} from 'react-native-paper/lib/typescript/styles/colors';
 
 const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 export const style = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   containerTop: {
     width: '100%',
-    height: '70%',
+    flex: 2,
     justifyContent: 'center',
     alignItems: 'center',
   },
   containerBottom: {
     backgroundColor: 'black',
     width: '100%',
-    height: '30%',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -39,5 +44,15 @@ export const style = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 30,
+  },
+  button: {
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    borderRadius: 5,
+    backgroundColor: 'black',
+  },
+  buttonText: {
+    color: 'white',
   },
 });

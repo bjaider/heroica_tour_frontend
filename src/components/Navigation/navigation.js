@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Text, View, Button, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
@@ -6,6 +6,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../../views/private/Home/home';
 import Map from '../../views/private/Map/map';
 import Currency from '../../views/private/Currency/currency';
+import PublicTransport from '../../views/private/PublicTransport/publicTransport';
 
 function MyTabBar({state, descriptors, navigation}) {
   return (
@@ -78,7 +79,7 @@ export default function Tabs() {
       />
       <Tab.Screen
         name="Map"
-        options={{tabBarLabel: 'Mapa'}}
+        options={{tabBarLabel:     'Mapa'}}
         component={Map}
       />
        <Tab.Screen
@@ -86,6 +87,14 @@ export default function Tabs() {
         options={{tabBarLabel: 'Divisas'}}
         component={Currency}
       />
+      <Tab.Screen
+        name="PublicTransport"
+        options={{tabBarLabel: 'Transporte'}}
+        component={PublicTransport}
+      />
     </Tab.Navigator>
   );
 }
+
+
+

@@ -5,13 +5,14 @@ import {
   Picker,
   FlatList,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   Keyboard,
+  Button,
 } from 'react-native';
 import {style} from './style';
 import axios from 'axios';
-import {Button, TextInput, DefaultTheme} from 'react-native-paper';
+import {TextInput, DefaultTheme} from 'react-native-paper';
 const Currency = () => {
-
   const theme = {
     ...DefaultTheme,
     colors: {
@@ -20,7 +21,7 @@ const Currency = () => {
       accent: 'yellow',
     },
   };
-  
+
   const [currencies, setCurrencies] = useState([]);
   const [amount, setAmount] = useState(0);
   const [result, setResult] = useState(0);
@@ -82,7 +83,7 @@ const Currency = () => {
   const [currencyB, setCurrencyB] = useState('USD');
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View>
+      <View style={style.container}>
         <View style={style.containerTop}>
           <View style={style.pickerContainer}>
             <Text style={style.title}>Moneda de entrada</Text>
@@ -124,12 +125,16 @@ const Currency = () => {
             /* value={am} */
             onChangeText={amount => setAmount(amount)}
           />
-          <Button
+          {/*  <Button
             style={{backgroundColor: 'black'}}
             mode="contained"
             onPress={() => getConvert()}>
             Convertir
-          </Button>
+          </Button> */}
+
+          <TouchableOpacity style={style.button} onPress={() => getConvert()}>
+            <Text style={style.buttonText}>Convertir</Text>
+          </TouchableOpacity>
         </View>
         <View style={style.containerBottom}>
           <Text style={style.result}>{result}</Text>

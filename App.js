@@ -1,7 +1,11 @@
 import 'react-native-gesture-handler';
 
 import React from 'react';
-import {Provider as PaperProvider, DefaultTheme} from 'react-native-paper';
+import {
+  Provider as PaperProvider,
+  DefaultTheme,
+  Appbar,
+} from 'react-native-paper';
 import {
   SafeAreaView,
   ScrollView,
@@ -21,7 +25,7 @@ import Tabs from './src/components/Navigation/navigation';
 
 const Stack = createStackNavigator();
 const App = () => {
-/*   const theme = {
+  /*   const theme = {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
@@ -37,9 +41,11 @@ const App = () => {
         case 'Home':
           return 'Inicio';
         case 'Map':
-          return 'Mapa';
+          return 'Mapa & Guías';
         case 'Currency':
           return 'Cambio de Divisas';
+        case 'PublicTransport':
+          return 'Transporte Público';
         default:
           break;
       }
@@ -63,10 +69,25 @@ const App = () => {
                 headerTitle: getHeaderTitle(route),
               })}
             />
-            {/* <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Map" component={Map} /> */}
           </Stack.Navigator>
         </NavigationContainer>
+        {/*  <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerTitleAlign: 'center',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}>
+            <Stack.Screen
+              name="Inicio"
+              component={Tabs}
+              options={({route}) => ({
+                headerTitle: getHeaderTitle(route),
+              })}
+            />
+          </Stack.Navigator>
+        </NavigationContainer> */}
       </PaperProvider>
     </>
   );
