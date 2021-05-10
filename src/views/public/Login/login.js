@@ -19,7 +19,6 @@ const Login = ({navigation}) => {
   const [password, setPassword] = useState('');
 
   const handleClick = () => {
-    
     const fields = {
       username: username,
       password: password,
@@ -30,7 +29,7 @@ const Login = ({navigation}) => {
       .then(function (response) {
         console.log(response.data);
         SyncStorage.set('token', response.data.token);
-        navigation.navigate('Home')
+        navigation.navigate('Home');
       })
       .catch(function (error) {
         console.log(error);
@@ -63,7 +62,7 @@ const Login = ({navigation}) => {
             Login
           </Button>
           <Text
-            onPress={() => console.log(navigation.navigate('SignUp'))}
+            onPress={() => navigation.navigate('SignUp')}
             style={style.link}>
             ¿No tienes cuenta?
           </Text>

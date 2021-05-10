@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import SyncStorage from 'sync-storage';
 import {
   Provider as PaperProvider,
   DefaultTheme,
@@ -14,7 +15,8 @@ import {
   Text,
   useColorScheme,
   View,
-  Button
+  Button,
+  TouchableOpacity,
 } from 'react-native';
 import {
   NavigationContainer,
@@ -25,6 +27,9 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Tabs from './src/components/Navigation/navigation';
 import Login from './src/views/public/Login/login';
 import SignUp from './src/views/public/SignUp/signUp';
+import SignUp2 from './src/views/public/SignUp2/signUp2';
+import axios from 'axios';
+import syncStorage from 'sync-storage';
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -56,6 +61,30 @@ const App = () => {
       }
     } catch (e) {}
   };
+  const [sw, setSw] = useState(false);
+  useEffect(() => {
+    console.log(sw);
+  }, [sw]);
+  const handleClick = () => {
+    /*     const url = 'http://heroicatour.herokuapp.com/logout/';
+    axios
+      .post(url, {
+        headers: {
+          Authorization: `token ${SyncStorage.get('token')}`,
+        },
+      })
+      .then(res => {
+        console.log(res.data);
+        SyncStorage.remove('token')
+      })
+      .catch(error => {
+        console.error(error);
+      }); */
+    SyncStorage.remove('token');
+
+    sw ? setSw(false) : setSw(true);
+    /* sw ? setSw(false) : setSw(true); */
+  };
   return (
     <>
       <PaperProvider>
@@ -72,13 +101,33 @@ const App = () => {
               component={Tabs}
               options={({route}) => ({
                 headerTitle: getHeaderTitle(route),
-                headerRight: () => (
-                  <Button
-                    onPress={() => alert('This is a button!')}
-                    title="Cerrar Sesión"
-                    color="#00cc00"
-                  />
-                ),
+                headerRight: () =>
+                  syncStorage.get('token') ? (
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end',
+                        paddingRight: 10,
+                        width: 120,
+                        height: '100%',
+                        alignItems: 'center',
+                      }}>
+                      <TouchableOpacity
+                        style={{
+                          backgroundColor: 'black',
+                          height: '60%',
+                          alignItems: 'center',
+                          flexDirection: 'row',
+                          justifyContent: 'center',
+                          borderRadius: 3,
+                        }}
+                        onPress={handleClick}>
+                        <Text style={{marginHorizontal: 10, color: 'white'}}>
+                          Cerrar Sesión
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  ) : null,
               })}
             />
             <Stack.Screen name="Login" component={Login} />
@@ -88,6 +137,13 @@ const App = () => {
                 title: 'Registro',
               }}
               component={SignUp}
+            />
+            <Stack.Screen
+              name="SignUp2"
+              options={{
+                title: 'Registro',
+              }}
+              component={SignUp2}
             />
           </Stack.Navigator>
         </NavigationContainer>
