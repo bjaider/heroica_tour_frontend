@@ -30,7 +30,7 @@ const SignUp = ({navigation}) => {
       .post(url, fields)
       .then(function (response) {
         console.log(response.data);
-        navigation.navigate('SignUp2');
+        navigation.navigate('SignUp2', {user:response.data.user});
       })
       .catch(function (error) {
         console.log(error);
@@ -66,7 +66,7 @@ const SignUp = ({navigation}) => {
             style={style.button}
             theme={{colors: {primary: 'black'}}}
             onPress={handleClick}>
-            Registrarse
+            Siguiente
           </Button>
         </View>
         {/* </ScrollView> */}

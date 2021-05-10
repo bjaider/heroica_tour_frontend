@@ -13,17 +13,19 @@ import {TextInput, DefaultTheme, Button} from 'react-native-paper';
 import {Avatar} from 'react-native-paper';
 import {style} from './style';
 
-const SignUp2 = ({navigation}) => {
-  const url = 'http://heroicatour.herokuapp.com/register/';
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-
+const SignUp2 = ({navigation, route}) => {
+  const url = 'http://heroicatour.herokuapp.com/cl/clientes/';
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [citizenship, setCitizenship] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState(0);
   const handleClick = () => {
     const fields = {
-      email: email,
-      username: username,
-      password: password,
+      Usuario: route.params.user.id,
+      Nombre: name,
+      Apellidos: lastName,
+      Nacionalidad: citizenship,
+      Celular: phoneNumber,
     };
 
     axios
@@ -39,45 +41,45 @@ const SignUp2 = ({navigation}) => {
     <>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         {/* <ScrollView> */}
-          <View style={style.container}>
-            <TextInput
-              label="Nombre"
-              style={style.input}
-              /* value={am} */
-              theme={{colors: {primary: 'black'}}}
-              /* onChangeText={amount => setAmount(amount)} */
-            />
-            <TextInput
-              label="Apellidos"
-              style={style.input}
-              /* value={am} */
-              theme={{colors: {primary: 'black'}}}
-              /* onChangeText={amount => setAmount(amount)} */
-            />
-            <TextInput
-              label="Nacionalidad"
-              style={style.input}
-              /* value={am} */
-              theme={{colors: {primary: 'black'}}}
-              /* onChangeText={amount => setAmount(amount)} */
-            />
-            <TextInput
-              label="Celular"
-              style={style.input}
-              /* value={am} */
-              theme={{colors: {primary: 'black'}}}
-              /* onChangeText={amount => setAmount(amount)} */
-            />
+        <View style={style.container}>
+          <TextInput
+            label="Nombre"
+            style={style.input}
+            /* value={am} */
+            theme={{colors: {primary: 'black'}}}
+            onChangeText={name => setName(name)}
+          />
+          <TextInput
+            label="Apellidos"
+            style={style.input}
+            /* value={am} */
+            theme={{colors: {primary: 'black'}}}
+            onChangeText={lastName => setLastName(lastName)}
+          />
+          <TextInput
+            label="Nacionalidad"
+            style={style.input}
+            /* value={am} */
+            theme={{colors: {primary: 'black'}}}
+            onChangeText={citizenship => setCitizenship(citizenship)}
+          />
+          <TextInput
+            label="Celular"
+            style={style.input}
+            /* value={am} */
+            theme={{colors: {primary: 'black'}}}
+            onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
+          />
 
-            <Button
-              mode="contained"
-              style={style.button}
-              theme={{colors: {primary: 'black'}}}
-              onPress={() => console.log('Pressed')}>
-              Registrarse
-            </Button>
-          </View>
-       {/*  </ScrollView> */}
+          <Button
+            mode="contained"
+            style={style.button}
+            theme={{colors: {primary: 'black'}}}
+            onPress={handleClick}>
+            Registrarse
+          </Button>
+        </View>
+        {/*  </ScrollView> */}
       </TouchableWithoutFeedback>
     </>
   );
