@@ -123,6 +123,7 @@ const Currency = () => {
             label="Cantidad"
             style={style.input}
             /* value={am} */
+            theme={{colors: {primary: 'black'}}}
             onChangeText={amount => setAmount(amount)}
           />
           {/*  <Button

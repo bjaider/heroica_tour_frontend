@@ -7,6 +7,8 @@ import Home from '../../views/private/Home/home';
 import Map from '../../views/private/Map/map';
 import Currency from '../../views/private/Currency/currency';
 import PublicTransport from '../../views/private/PublicTransport/publicTransport';
+import Login from '../../views/public/Login/login';
+import SignUp from '../../views/public/SignUp/signUp';
 
 function MyTabBar({state, descriptors, navigation}) {
   return (
@@ -74,12 +76,12 @@ export default function Tabs() {
       tabBar={props => <MyTabBar {...props} />}>
       <Tab.Screen
         name="Home"
-        options={{tabBarLabel: 'Inicio'}}
+        options={{tabBarLabel:'Inicio'}}
         component={Home}
       />
       <Tab.Screen
         name="Map"
-        options={{tabBarLabel:     'Mapa'}}
+        options={{tabBarLabel:'Mapa'}}
         component={Map}
       />
        <Tab.Screen
@@ -92,6 +94,16 @@ export default function Tabs() {
         options={{tabBarLabel: 'Transporte'}}
         component={PublicTransport}
       />
+      <Tab.Screen
+        name="Login"
+        options={{tabBarLabel: 'Login'}}
+        component={Login}
+      />
+   {/*     <Tab.Screen
+        name="SignUp"
+        options={{tabBarLabel: 'SignUp'}}
+        component={SignUp} 
+      /> */}
     </Tab.Navigator>
   );
 }

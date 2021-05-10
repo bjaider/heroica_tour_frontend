@@ -22,6 +22,8 @@ import {
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Tabs from './src/components/Navigation/navigation';
+import Login from './src/views/public/Login/login';
+import SignUp from './src/views/public/SignUp/signUp';
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -46,6 +48,8 @@ const App = () => {
           return 'Cambio de Divisas';
         case 'PublicTransport':
           return 'Transporte Público';
+        case 'Login':
+          return 'Iniciar Sesión';
         default:
           break;
       }
@@ -69,25 +73,16 @@ const App = () => {
                 headerTitle: getHeaderTitle(route),
               })}
             />
-          </Stack.Navigator>
-        </NavigationContainer>
-        {/*  <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerTitleAlign: 'center',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-              },
-            }}>
+            <Stack.Screen name="Login" component={Login} />
             <Stack.Screen
-              name="Inicio"
-              component={Tabs}
-              options={({route}) => ({
-                headerTitle: getHeaderTitle(route),
-              })}
+              name="SignUp"
+              options={{
+                title: 'Registro',
+              }}
+              component={SignUp}
             />
           </Stack.Navigator>
-        </NavigationContainer> */}
+        </NavigationContainer>
       </PaperProvider>
     </>
   );
