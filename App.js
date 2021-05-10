@@ -14,6 +14,7 @@ import {
   Text,
   useColorScheme,
   View,
+  Button
 } from 'react-native';
 import {
   NavigationContainer,
@@ -71,6 +72,13 @@ const App = () => {
               component={Tabs}
               options={({route}) => ({
                 headerTitle: getHeaderTitle(route),
+                headerRight: () => (
+                  <Button
+                    onPress={() => alert('This is a button!')}
+                    title="Cerrar Sesión"
+                    color="#00cc00"
+                  />
+                ),
               })}
             />
             <Stack.Screen name="Login" component={Login} />

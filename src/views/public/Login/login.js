@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import SyncStorage from 'sync-storage';
 import {
   Text,
   View,
@@ -17,8 +18,9 @@ const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleClick = () =>  {
-   const fields = {
+  const handleClick = () => {
+    
+    const fields = {
       username: username,
       password: password,
     };
@@ -27,6 +29,8 @@ const Login = ({navigation}) => {
       .post(url, fields)
       .then(function (response) {
         console.log(response.data);
+        SyncStorage.set('token', response.data.token);
+        navigation.navigate('Home')
       })
       .catch(function (error) {
         console.log(error);

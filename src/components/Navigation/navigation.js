@@ -1,4 +1,5 @@
 import React from 'react';
+import SyncStorage from 'sync-storage';
 import {Text, View, Button, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
@@ -76,15 +77,11 @@ export default function Tabs() {
       tabBar={props => <MyTabBar {...props} />}>
       <Tab.Screen
         name="Home"
-        options={{tabBarLabel:'Inicio'}}
+        options={{tabBarLabel: 'Inicio'}}
         component={Home}
       />
+      <Tab.Screen name="Map" options={{tabBarLabel: 'Mapa'}} component={Map} />
       <Tab.Screen
-        name="Map"
-        options={{tabBarLabel:'Mapa'}}
-        component={Map}
-      />
-       <Tab.Screen
         name="Currency"
         options={{tabBarLabel: 'Divisas'}}
         component={Currency}
@@ -94,12 +91,14 @@ export default function Tabs() {
         options={{tabBarLabel: 'Transporte'}}
         component={PublicTransport}
       />
-      <Tab.Screen
-        name="Login"
-        options={{tabBarLabel: 'Login'}}
-        component={Login}
-      />
-   {/*     <Tab.Screen
+      {!SyncStorage.get('token') ? (
+        <Tab.Screen
+          name="Login"
+          options={{tabBarLabel: 'Login'}}
+          component={Login}
+        />
+      ) : null}
+      {/*     <Tab.Screen
         name="SignUp"
         options={{tabBarLabel: 'SignUp'}}
         component={SignUp} 
@@ -107,6 +106,3 @@ export default function Tabs() {
     </Tab.Navigator>
   );
 }
-
-
-
