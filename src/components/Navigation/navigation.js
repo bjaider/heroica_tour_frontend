@@ -7,7 +7,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../../views/private/Home/home';
 import Map from '../../views/private/Map/map';
 import Currency from '../../views/private/Currency/currency';
-import PublicTransport from '../../views/private/PublicTransport/publicTransport';
+import Transport from '../../views/private/Transport/transport';
 import Login from '../../views/public/Login/login';
 import SignUp from '../../views/public/SignUp/signUp';
 
@@ -87,9 +87,9 @@ export default function Tabs() {
         component={Currency}
       />
       <Tab.Screen
-        name="PublicTransport"
+        name="Transport"
         options={{tabBarLabel: 'Transporte'}}
-        component={PublicTransport}
+        component={Transport}
       />
       {!SyncStorage.get('token') ? (
         <Tab.Screen

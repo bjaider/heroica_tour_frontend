@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {style} from './style';
 
-const AllAttractions = () => {
+const TouristSites = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const url = 'http://heroicatour.herokuapp.com/cl/sitios/';
@@ -93,4 +93,4 @@ const AllAttractions = () => {
   );
 };
 
-export default AllAttractions;
+export default TouristSites;

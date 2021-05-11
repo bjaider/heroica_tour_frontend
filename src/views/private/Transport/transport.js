@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text, View, ScrollView, Image} from 'react-native';
 import {Avatar} from 'react-native-paper';
 import {style} from './style';
 
@@ -9,7 +8,24 @@ import Guide from '../../../components/Guide/guide';
 import TouristSites from '../../../components/TopbarHome/TouristSites/touristSites';
 import Restaurants from '../../../components/TopbarHome/Restaurants/restaurants';
 import Tours from '../../../components/TopbarHome/Tours/tours';
+import {Text, View, Button, TouchableOpacity} from 'react-native';
+import Cars from '../../../components/TopbarTransport/Cars/cars';
 
+const Categoría1 = ({navigation}) => {
+  return (
+    <>
+      <Text>Categoría 1</Text>
+    </>
+  );
+};
+
+const Categoría2 = ({navigation}) => {
+  return (
+    <>
+      <Text>Categoría 2</Text>
+    </>
+  );
+};
 
 const Categoría3 = ({navigation}) => {
   return (
@@ -19,7 +35,7 @@ const Categoría3 = ({navigation}) => {
   );
 };
 
-const Home = ({navigation}) => {
+const Transport = ({navigation}) => {
   const Tab = createMaterialTopTabNavigator();
   return (
     <>
@@ -28,13 +44,12 @@ const Home = ({navigation}) => {
           indicatorStyle: {backgroundColor: 'black'},
           labelStyle: {fontSize: 10},
         }}>
-        <Tab.Screen name="Sitios Turísticos" component={TouristSites} />
-        <Tab.Screen name="Restaurantes" component={Restaurants} />
-        <Tab.Screen name="Tours" component={Tours} />
-        <Tab.Screen name="Categoría 3" component={Categoría3} />
+        <Tab.Screen name="Autos" component={Cars} />
+        <Tab.Screen name="Taxis" component={Categoría2} />
+        <Tab.Screen name="Rutas" component={Categoría3} />
       </Tab.Navigator>
     </>
   );
 };
 
-export default Home;
+export default Transport;

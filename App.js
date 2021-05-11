@@ -53,8 +53,8 @@ const App = () => {
           return 'Mapa & Guías';
         case 'Currency':
           return 'Cambio de Divisas';
-        case 'PublicTransport':
-          return 'Transporte Público';
+        case 'Transport':
+          return 'Transporte';
         case 'Login':
           return 'Iniciar Sesión';
         default:
