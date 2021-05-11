@@ -62,7 +62,7 @@ const Login = ({navigation}) => {
             Login
           </Button>
           <Text
-            onPress={() => navigation.navigate('Preferences')}
+            onPress={() => navigation.navigate('SignUp')}
             style={style.link}>
             ¿No tienes cuenta?
           </Text>

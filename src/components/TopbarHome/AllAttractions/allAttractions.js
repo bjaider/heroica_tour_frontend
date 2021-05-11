@@ -1,15 +1,50 @@
-import React from 'react';
-import {Text, View, Button, TouchableOpacity, ScrollView, Image} from 'react-native';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
+import {
+  Text,
+  View,
+  Button,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+} from 'react-native';
 import {style} from './style';
+
 const AllAttractions = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const url = 'http://heroicatour.herokuapp.com/cl/sitios/';
+    axios
+      .get(url)
+      .then(function (response) {
+        console.log(response.data);
+        setData(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
   return (
     <ScrollView>
-      <View style={style.container}>
+      {data.map(place => {
+        return (
+          <View style={style.container} key={place.Nombre}>
+            <Image
+              style={style.image}
+              source={{
+                uri: place.Image,
+              }}
+            />
+            <Text style={style.title}>{place.Nombre}</Text>
+          </View>
+        );
+      })}
+
+      {/*      <View style={style.container}>
         <Image
           style={style.image}
           source={{
-            uri:
-              'https://visitasimprescindibles.com/wp-content/uploads/2020/04/Portada-1.jpg',
+            uri: 'https://visitasimprescindibles.com/wp-content/uploads/2020/04/Portada-1.jpg',
           }}
         />
         <Text style={style.title}>Castillo San Felipe</Text>
@@ -18,8 +53,7 @@ const AllAttractions = () => {
         <Image
           style={style.image}
           source={{
-            uri:
-              'https://media-cdn.tripadvisor.com/media/photo-s/1c/5c/22/42/rooftop-con-vista-a-la.jpg',
+            uri: 'https://media-cdn.tripadvisor.com/media/photo-s/1c/5c/22/42/rooftop-con-vista-a-la.jpg',
           }}
         />
 
@@ -29,8 +63,7 @@ const AllAttractions = () => {
         <Image
           style={style.image}
           source={{
-            uri:
-              'https://www.boats4u.co/images/noticias/razones-visitar-islas-del-rosario-colombia.jpg',
+            uri: 'https://www.boats4u.co/images/noticias/razones-visitar-islas-del-rosario-colombia.jpg',
           }}
         />
 
@@ -40,8 +73,7 @@ const AllAttractions = () => {
         <Image
           style={style.image}
           source={{
-            uri:
-              'https://2.bp.blogspot.com/-aiJgb5QYndg/VuMPiVPix-I/AAAAAAAAA_M/_WYp9PFoCjwUgComoB1YhbFvEPggOb_ug/s1600/cartagena-colombia.jpg',
+            uri: 'https://2.bp.blogspot.com/-aiJgb5QYndg/VuMPiVPix-I/AAAAAAAAA_M/_WYp9PFoCjwUgComoB1YhbFvEPggOb_ug/s1600/cartagena-colombia.jpg',
           }}
         />
 
@@ -51,13 +83,12 @@ const AllAttractions = () => {
         <Image
           style={style.image}
           source={{
-            uri:
-              'https://lh3.googleusercontent.com/proxy/YHI-41kyyFzXj72tYP-KpTGTMMkZvJPSdoNA__xWU77LAczzPJ3iraHTUZe5gaoQS_Scmdbq4Zk1ygjmLpYpe-SO-oMpe2aKns_hOa_1bVqxLROnThL_fdAaPlb_od0Zy64awlbY',
+            uri: 'https://www.eluniversal.com.co/sites/default/files/teatro_heredia_0.jpg',
           }}
         />
 
         <Text style={style.title}>Teatro Adolfo Heredia</Text>
-      </View>
+      </View> */}
     </ScrollView>
   );
 };

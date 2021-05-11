@@ -32,6 +32,7 @@ const SignUp2 = ({navigation, route}) => {
       .post(url, fields)
       .then(function (response) {
         console.log(response.data);
+        navigation.navigate('Preferences', route.params.user.id);
       })
       .catch(function (error) {
         console.log(error);

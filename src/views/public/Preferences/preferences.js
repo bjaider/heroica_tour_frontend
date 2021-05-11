@@ -15,29 +15,34 @@ import {Avatar} from 'react-native-paper';
 import {style} from './style';
 
 const Preferences = ({navigation, route}) => {
-  const url = 'http://heroicatour.herokuapp.com/cl/clientes/';
+  const url = 'http://heroicatour.herokuapp.com/cl/preferencias/';
   const [budget, setBudget] = useState(0);
   const [companions, setCompanions] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [phoneNumber, setPhoneNumber] = useState(0);
-  const [option1, setOption1] = useState(null);
-  const [option2, setOption2] = useState(null);
-  const [option3, setOption3] = useState(null);
-  const [option4, setOption4] = useState(null);
-  const [option5, setOption5] = useState(null);
+  const [option1, setOption1] = useState(true);
+  const [option2, setOption2] = useState(true);
+  const [option3, setOption3] = useState(true);
+  const [option4, setOption4] = useState(true);
+  const [option5, setOption5] = useState(true);
   const handleClick = () => {
+    /* console.log(route.params) */
     const fields = {
-      Usuario: route.params.user.id,
-      Nombre: name,
-      Apellidos: lastName,
-      Nacionalidad: citizenship,
-      Celular: phoneNumber,
+      Usuario: route.params,
+      Presupuesto: budget,
+      Acompañantes: companions,
+      Duracion: duration,
+      Alojamiento: option1,
+      Auto: option2,
+      Playa: option3,
+      Historia: option4,
+      Recordatorio: option5,
     };
-
+    console.log(fields);
     axios
       .post(url, fields)
       .then(function (response) {
         console.log(response.data);
+        navigation.navigate('Home');
       })
       .catch(function (error) {
         console.log(error);
@@ -81,7 +86,7 @@ const Preferences = ({navigation, route}) => {
             </Picker>
             <Text style={style.title}>Auto</Text>
             <Picker
-              selectedValue={option1}
+              selectedValue={option2}
               style={style.picker}
               onValueChange={(itemValue, itemIndex) => setOption2(itemValue)}>
               <Picker.Item label="Sí" value="true" />
@@ -89,7 +94,7 @@ const Preferences = ({navigation, route}) => {
             </Picker>
             <Text style={style.title}>Playas</Text>
             <Picker
-              selectedValue={option1}
+              selectedValue={option3}
               style={style.picker}
               onValueChange={(itemValue, itemIndex) => setOption3(itemValue)}>
               <Picker.Item label="Sí" value="true" />
@@ -97,7 +102,7 @@ const Preferences = ({navigation, route}) => {
             </Picker>
             <Text style={style.title}>Historia</Text>
             <Picker
-              selectedValue={option1}
+              selectedValue={option4}
               style={style.picker}
               onValueChange={(itemValue, itemIndex) => setOption4(itemValue)}>
               <Picker.Item label="Sí" value="true" />
@@ -106,7 +111,7 @@ const Preferences = ({navigation, route}) => {
 
             <Text style={style.title}>Recordatorio</Text>
             <Picker
-              selectedValue={option1}
+              selectedValue={option5}
               style={style.picker}
               onValueChange={(itemValue, itemIndex) => setOption5(itemValue)}>
               <Picker.Item label="Sí" value="true" />
