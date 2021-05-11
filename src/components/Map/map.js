@@ -39,20 +39,20 @@ const Map = () => {
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}>
-        <Marker
+        {/*  <Marker
           coordinate={{latitude: 10.4227139, longitude: -75.5393513342617}}
           title={'Castillo San Felipe de Barajas'}
-          /* description={'Fortificación localizada en la ciudad de Cartagena de Indias en Colombia'} */
-        />
+        /> */}
 
-     {/*    {data.map(place => {
+        {data.map(place => {
           return (
             <Marker
-              coordinate={{latitude: 10.4227139, longitude: -75.5393513342617}}
-              title={'Castillo San Felipe de Barajas'}
+              key={place.Nombre}
+              coordinate={{latitude: place.Latitud, longitude: place.Longitud}}
+              title={place.Nombre}
             />
           );
-        })} */}
+        })}
       </MapView>
     </View>
   );
