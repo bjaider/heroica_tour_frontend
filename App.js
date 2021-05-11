@@ -28,6 +28,7 @@ import Tabs from './src/components/Navigation/navigation';
 import Login from './src/views/public/Login/login';
 import SignUp from './src/views/public/SignUp/signUp';
 import SignUp2 from './src/views/public/SignUp2/signUp2';
+import Preferences from './src/views/public/Preferences/preferences';
 import axios from 'axios';
 import syncStorage from 'sync-storage';
 
@@ -144,6 +145,13 @@ const App = () => {
                 title: 'Registro',
               }}
               component={SignUp2}
+            />
+            <Stack.Screen
+              name="Preferences"
+              options={{
+                title: 'Preferencias',
+              }}
+              component={Preferences}
             />
           </Stack.Navigator>
         </NavigationContainer>
