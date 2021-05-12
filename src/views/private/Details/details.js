@@ -9,8 +9,10 @@ const Restaurants = ({navigation, route}) => {
   const [data, setData] = useState([]);
   const [rating, setRating] = useState(0);
   const [opinion, setOpinion] = useState('');
+  const [visible, setVisible] = useState(false);
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
+  
   const containerStyle = {
     backgroundColor: 'white',
     padding: 20,
@@ -21,11 +23,8 @@ const Restaurants = ({navigation, route}) => {
   useEffect(() => {
     setData(route.params);
   }, []);
-  const [visible, setVisible] = React.useState(false);
+  
 
-  const ratingCompleted = rating => {
-    console.log('Rating is: ' + rating);
-  };
   return (
     <ScrollView>
       <View style={style.container} key={data.id}>
@@ -77,7 +76,7 @@ const Restaurants = ({navigation, route}) => {
             multiline={true}
             numberOfLines={5}
             theme={{colors: {primary: 'black'}}}
-            onChangeText={opinio => setOpinion(opinio)}
+            onChangeText={opinion => setOpinion(opinion)}
           />
 
           <Rating

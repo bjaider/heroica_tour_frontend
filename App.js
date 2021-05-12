@@ -6,6 +6,8 @@ import {
   Provider as PaperProvider,
   DefaultTheme,
   Appbar,
+  Portal,
+  Modal,
 } from 'react-native-paper';
 import {
   SafeAreaView,
@@ -17,6 +19,7 @@ import {
   View,
   Button,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import {
   NavigationContainer,
@@ -35,15 +38,15 @@ import syncStorage from 'sync-storage';
 
 const Stack = createStackNavigator();
 const App = () => {
-  /*   const theme = {
-    ...DefaultTheme,
-    colors: {
-      ...DefaultTheme.colors,
-      primary: 'tomato',
-      accent: 'yellow',
-    },
+  const [visible, setVisible] = useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = {
+    backgroundColor: 'white',
+    padding: "5%",
+    width: '60%',
+    margin: '20%',
   };
-  console.log(theme); */
   const getHeaderTitle = route => {
     try {
       const routeName = getFocusedRouteNameFromRoute(route) ?? 'Inicio';
@@ -75,6 +78,23 @@ const App = () => {
   return (
     <>
       <PaperProvider>
+        <Portal>
+          <Modal
+            visible={visible}
+            onDismiss={hideModal}
+            contentContainerStyle={containerStyle}>
+            <Text>Línea de emergencia: 123</Text>
+            <Text>Policía Nacional: 112</Text>
+            <Text>Policía de Tránsito: 127</Text>
+            <Text>Defensa Civil: 144</Text>
+            <Text>Bomberos: 119</Text>
+            <Text>Cruz Roja: 132</Text>
+            <Text>Servicio de Ambulancias: 125 </Text>
+            <Text>Gaula– Antisecuestros: 165</Text>
+            <Text>Atención a Desastres: 111</Text>
+          </Modal>
+        </Portal>
+
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
@@ -115,6 +135,26 @@ const App = () => {
                       </TouchableOpacity>
                     </View>
                   ) : null,
+                headerLeft: () => (
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'flex-end',
+                      paddingRight: 10,
+                      width: 60,
+                      height: '100%',
+                      alignItems: 'center',
+                    }}>
+                    <TouchableOpacity onPress={showModal} activeOpacity={0.6}>
+                      <Image
+                        style={{width: 28, height: 28}}
+                        source={{
+                          uri: 'https://res.cloudinary.com/dhxg3zyjz/image/upload/v1620797943/Heroica%20Tour/alert_k7osmj.png',
+                        }}
+                      />
+                    </TouchableOpacity>
+                  </View>
+                ),
               })}
             />
             <Stack.Screen name="Login" component={Login} />
