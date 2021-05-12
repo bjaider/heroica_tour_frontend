@@ -36,8 +36,8 @@ export const style = StyleSheet.create({
     right: 15,
     top: 10,
     backgroundColor: '#ececec',
-    padding:5,
-    borderRadius:50
+    padding: 5,
+    borderRadius: 50,
   },
   rateImage: {
     width: 24,
@@ -76,5 +76,9 @@ export const style = StyleSheet.create({
   },
   description: {
     textAlign: 'justify',
+  },
+  input: {
+    marginTop: 10,
+    marginBottom: 20,
   },
 });

@@ -1,21 +1,31 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {
-  Text,
-  View,
-  Button,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-} from 'react-native';
+import {Text, View, TouchableOpacity, ScrollView, Image} from 'react-native';
+import {Portal, Button, Modal, TextInput} from 'react-native-paper';
+import {Rating, AirbnbRating} from 'react-native-ratings';
 import {style} from './style';
 
 const Restaurants = ({navigation, route}) => {
   const [data, setData] = useState([]);
+  const [rating, setRating] = useState(0);
+  const [opinion, setOpinion] = useState('');
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = {
+    backgroundColor: 'white',
+    padding: 20,
+    width: '90%',
+    margin: '5%',
+  };
   console.log('asd', route.params);
   useEffect(() => {
     setData(route.params);
   }, []);
+  const [visible, setVisible] = React.useState(false);
+
+  const ratingCompleted = rating => {
+    console.log('Rating is: ' + rating);
+  };
   return (
     <ScrollView>
       <View style={style.container} key={data.id}>
@@ -27,7 +37,10 @@ const Restaurants = ({navigation, route}) => {
         />
         <Text style={style.title}>{data.Nombre}</Text>
         <Text style={style.subtitle}>{data.Categoria}</Text>
-        <TouchableOpacity style={style.rate} activeOpacity={0.7}>
+        <TouchableOpacity
+          style={style.rate}
+          activeOpacity={0.7}
+          onPress={showModal}>
           <Image
             style={style.rateImage}
             source={{
@@ -52,6 +65,29 @@ const Restaurants = ({navigation, route}) => {
       <View style={style.descriptionContainer}>
         <Text style={style.description}>{data.Descripcion}</Text>
       </View>
+
+      <Portal>
+        <Modal
+          visible={visible}
+          onDismiss={hideModal}
+          contentContainerStyle={containerStyle}>
+          <TextInput
+            label="Opiniones"
+            style={style.input}
+            multiline={true}
+            numberOfLines={5}
+            theme={{colors: {primary: 'black'}}}
+            onChangeText={opinio => setOpinion(opinio)}
+          />
+
+          <Rating
+            ratingCount={5}
+            startingValue={3}
+            imageSize={60}
+            onFinishRating={raiting => setRating(raiting)}
+          />
+        </Modal>
+      </Portal>
     </ScrollView>
   );
 };
