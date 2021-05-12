@@ -10,15 +10,6 @@ import TouristSites from '../../../components/TopbarHome/TouristSites/touristSit
 import Restaurants from '../../../components/TopbarHome/Restaurants/restaurants';
 import Tours from '../../../components/TopbarHome/Tours/tours';
 
-
-const Categoría3 = ({navigation}) => {
-  return (
-    <>
-      <Text>Categoría tres</Text>
-    </>
-  );
-};
-
 const Home = ({navigation}) => {
   const Tab = createMaterialTopTabNavigator();
   return (
@@ -31,7 +22,6 @@ const Home = ({navigation}) => {
         <Tab.Screen name="Sitios Turísticos" component={TouristSites} />
         <Tab.Screen name="Restaurantes" component={Restaurants} />
         <Tab.Screen name="Tours" component={Tours} />
-        <Tab.Screen name="Categoría 3" component={Categoría3} />
       </Tab.Navigator>
     </>
   );

@@ -10,6 +10,7 @@ import Restaurants from '../../../components/TopbarHome/Restaurants/restaurants'
 import Tours from '../../../components/TopbarHome/Tours/tours';
 import {Text, View, Button, TouchableOpacity} from 'react-native';
 import Cars from '../../../components/TopbarTransport/Cars/cars';
+import Taxis from '../../../components/TopbarTransport/Taxis/taxis';
 
 const Categoría1 = ({navigation}) => {
   return (
@@ -45,7 +46,7 @@ const Transport = ({navigation}) => {
           labelStyle: {fontSize: 10},
         }}>
         <Tab.Screen name="Autos" component={Cars} />
-        <Tab.Screen name="Taxis" component={Categoría2} />
+        <Tab.Screen name="Taxis" component={Taxis} />
         <Tab.Screen name="Rutas" component={Categoría3} />
       </Tab.Navigator>
     </>
