@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {style} from './style';
 
-const Cars = () => {
+const Cars = ({navigation}) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const url = 'http://heroicatour.herokuapp.com/cl/autos/';
@@ -24,19 +24,41 @@ const Cars = () => {
         console.log(error);
       });
   }, []);
+
+  const paramns = id => {
+    data.map(car => {
+      if (id == car.id) {
+        let props = {
+          Categoria: 'Autos',
+          Price: car.CostoPerDay,
+          Descripcion: car.Descripcion,
+          Direccion: `Matrícula: ${car.Matricula}`,
+          Image: car.Image,
+          Nombre: `${car.Marca} ${car.Modelo}`,
+          Rate: car.Rate,
+        };
+        navigation.navigate('Details', props);
+      }
+    });
+  };
   return (
     <ScrollView>
       {data.map(car => {
         return (
-          <View style={style.container} key={car.Matricula}>
-            <Image
-              style={style.image}
-              source={{
-                uri: car.Image,
-              }}
-            />
-            <Text style={style.title}>{`${car.Marca} ${car.Modelo}`}</Text>
-          </View>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            key={car.id}
+            onPress={() => paramns(car.id)}>
+            <View style={style.container} key={car.Matricula}>
+              <Image
+                style={style.image}
+                source={{
+                  uri: car.Image,
+                }}
+              />
+              <Text style={style.title}>{`${car.Marca} ${car.Modelo}`}</Text>
+            </View>
+          </TouchableOpacity>
         );
       })}
     </ScrollView>

@@ -112,7 +112,7 @@ const Taxis = () => {
           </TouchableOpacity>
         </View>
         <View style={style.containerBottom}>
-          <Text style={style.result}>{result}</Text>
+          <Text style={style.result}>{`${result} COP`}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>

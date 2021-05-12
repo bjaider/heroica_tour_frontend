@@ -9,6 +9,7 @@ import Guide from '../../../components/Guide/guide';
 import TouristSites from '../../../components/TopbarHome/TouristSites/touristSites';
 import Restaurants from '../../../components/TopbarHome/Restaurants/restaurants';
 import Tours from '../../../components/TopbarHome/Tours/tours';
+import Hotels from '../../../components/TopbarHome/Hotels/hotels';
 
 const Home = ({navigation}) => {
   const Tab = createMaterialTopTabNavigator();
@@ -21,6 +22,7 @@ const Home = ({navigation}) => {
         }}>
         <Tab.Screen name="Sitios Turísticos" component={TouristSites} />
         <Tab.Screen name="Restaurantes" component={Restaurants} />
+        <Tab.Screen name="Hoteles" component={Hotels} />
         <Tab.Screen name="Tours" component={Tours} />
       </Tab.Navigator>
     </>

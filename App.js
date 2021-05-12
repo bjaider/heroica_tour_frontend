@@ -29,6 +29,7 @@ import Login from './src/views/public/Login/login';
 import SignUp from './src/views/public/SignUp/signUp';
 import SignUp2 from './src/views/public/SignUp2/signUp2';
 import Preferences from './src/views/public/Preferences/preferences';
+import Details from './src/views/private/Details/details';
 import axios from 'axios';
 import syncStorage from 'sync-storage';
 
@@ -67,24 +68,9 @@ const App = () => {
     console.log(sw);
   }, [sw]);
   const handleClick = () => {
-    /*     const url = 'http://heroicatour.herokuapp.com/logout/';
-    axios
-      .post(url, {
-        headers: {
-          Authorization: `token ${SyncStorage.get('token')}`,
-        },
-      })
-      .then(res => {
-        console.log(res.data);
-        SyncStorage.remove('token')
-      })
-      .catch(error => {
-        console.error(error);
-      }); */
     SyncStorage.remove('token');
 
     sw ? setSw(false) : setSw(true);
-    /* sw ? setSw(false) : setSw(true); */
   };
   return (
     <>
@@ -132,6 +118,13 @@ const App = () => {
               })}
             />
             <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen
+              name="Details"
+              options={{
+                title: 'Detalles',
+              }}
+              component={Details}
+            />
             <Stack.Screen
               name="SignUp"
               options={{

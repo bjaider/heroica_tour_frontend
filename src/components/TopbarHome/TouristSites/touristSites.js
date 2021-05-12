@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {style} from './style';
 
-const TouristSites = () => {
+const TouristSites = ({navigation}) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const url = 'http://heroicatour.herokuapp.com/cl/sitios/';
@@ -24,19 +24,41 @@ const TouristSites = () => {
         console.log(error);
       });
   }, []);
+
+  const paramns = id => {
+    data.map(place => {
+      if (id == place.id) {
+        let props = {
+          Categoria: place.Categoria,
+          Price: place.CostoEntrada,
+          Descripcion: place.Descripcion,
+          Direccion: place.Direccion,
+          Image: place.Image,
+          Nombre: place.Nombre,
+          Rate: place.Rate,
+        };
+        navigation.navigate('Details', props);
+      }
+    });
+  };
   return (
     <ScrollView>
       {data.map(place => {
         return (
-          <View style={style.container} key={place.Nombre}>
-            <Image
-              style={style.image}
-              source={{
-                uri: place.Image,
-              }}
-            />
-            <Text style={style.title}>{place.Nombre}</Text>
-          </View>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            key={place.id}
+            onPress={() => paramns(place.id)}>
+            <View style={style.container}>
+              <Image
+                style={style.image}
+                source={{
+                  uri: place.Image,
+                }}
+              />
+              <Text style={style.title}>{place.Nombre}</Text>
+            </View>
+          </TouchableOpacity>
         );
       })}
 

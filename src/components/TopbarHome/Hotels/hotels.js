@@ -10,10 +10,10 @@ import {
 } from 'react-native';
 import {style} from './style';
 
-const Restaurants = ({navigation, route}) => {
+const Hotels = ({navigation}) => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    const url = 'http://heroicatour.herokuapp.com/cl/restaurantes/';
+    const url = 'http://heroicatour.herokuapp.com/cl/hoteles/';
     axios
       .get(url)
       .then(function (response) {
@@ -26,37 +26,37 @@ const Restaurants = ({navigation, route}) => {
   }, []);
 
   const paramns = id => {
-    data.map(restaurant => {
-      if (id == restaurant.id) {
+    data.map(hotel => {
+      if (id == hotel.id) {
         let props = {
-          Categoria: restaurant.Categoria,
-          Price: restaurant.CostoMax,
-          Descripcion: restaurant.Descripcion,
-          Direccion: restaurant.Direccion,
-          Image: restaurant.Image,
-          Nombre: restaurant.Nombre,
-          Rate: restaurant.Rate,
+          Categoria: hotel.Categoria,
+          Telefono: hotel.Telefono,
+          Descripcion: hotel.Descripcion,
+          Direccion: hotel.Direccion,
+          Image: hotel.Image,
+          Nombre: hotel.Nombre,
+          Rate: hotel.Rate,
         };
-        navigation.navigate('Details', props);
+        navigation.navigate('Details', hotel);
       }
     });
   };
   return (
     <ScrollView>
-      {data.map(restaurant => {
+      {data.map(hotel => {
         return (
           <TouchableOpacity
             activeOpacity={0.7}
-            key={restaurant.id}
-            onPress={() => paramns(restaurant.id)}>
+            key={hotel.id}
+            onPress={() => paramns(hotel.id)}>
             <View style={style.container}>
               <Image
                 style={style.image}
                 source={{
-                  uri: restaurant.Image,
+                  uri: hotel.Image,
                 }}
               />
-              <Text style={style.title}>{restaurant.Nombre}</Text>
+              <Text style={style.title}>{hotel.Nombre}</Text>
             </View>
           </TouchableOpacity>
         );
@@ -65,4 +65,4 @@ const Restaurants = ({navigation, route}) => {
   );
 };
 
-export default Restaurants;
+export default Hotels;
