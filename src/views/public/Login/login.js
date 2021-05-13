@@ -29,6 +29,7 @@ const Login = ({navigation}) => {
       .then(function (response) {
         console.log(response.data);
         SyncStorage.set('token', response.data.token);
+        /* SyncStorage.set('token', response.data.id); */
         navigation.navigate('Home');
       })
       .catch(function (error) {

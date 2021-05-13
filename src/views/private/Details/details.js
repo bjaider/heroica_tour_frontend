@@ -58,7 +58,7 @@ const Restaurants = ({navigation, route}) => {
           </Text>
         </View>
         <View style={[style.infoContainers, style.lastInfoContainers]}>
-          <Text style={style.infoText}>{data.Rate} ☆</Text>
+          <Text style={style.infoText}>{data.Rate}</Text>
         </View>
       </View>
       <View style={style.descriptionContainer}>
