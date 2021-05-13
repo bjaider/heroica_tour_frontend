@@ -81,4 +81,9 @@ export const style = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
   },
+  button: {
+    width: '50%',
+    marginTop: 20,
+    marginHorizontal: '25%',
+  },
 });

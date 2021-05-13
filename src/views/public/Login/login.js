@@ -15,6 +15,7 @@ import {style} from './style';
 
 const Login = ({navigation}) => {
   const url = 'http://heroicatour.herokuapp.com/login/';
+  const url2 = 'http://heroicatour.herokuapp.com/user/';
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -29,8 +30,20 @@ const Login = ({navigation}) => {
       .then(function (response) {
         console.log(response.data);
         SyncStorage.set('token', response.data.token);
-        /* SyncStorage.set('token', response.data.id); */
-        navigation.navigate('Home');
+        axios
+          .get(url2, {
+            headers: {
+              Authorization: `Token ${response.data.token}`,
+            },
+          })
+          .then(function (response) {
+            console.log(response.data);
+            SyncStorage.set('clientID', response.data.id);
+            navigation.navigate('Home');
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       })
       .catch(function (error) {
         console.log(error);

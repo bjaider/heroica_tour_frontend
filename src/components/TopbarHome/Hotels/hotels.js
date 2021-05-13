@@ -29,6 +29,7 @@ const Hotels = ({navigation}) => {
     data.map(hotel => {
       if (id == hotel.id) {
         let props = {
+          id:hotel.id,
           Categoria: hotel.Categoria,
           Telefono: hotel.Telefono,
           Descripcion: hotel.Descripcion,
@@ -37,7 +38,7 @@ const Hotels = ({navigation}) => {
           Nombre: hotel.Nombre,
           Rate: hotel.Rate,
         };
-        navigation.navigate('Details', hotel);
+        navigation.navigate('Details', props);
       }
     });
   };

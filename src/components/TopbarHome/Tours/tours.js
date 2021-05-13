@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {style} from './style';
 
-const Tours = ({navigation,route}) => {
+const Tours = ({navigation, route}) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const url = 'http://heroicatour.herokuapp.com/cl/tours/';
@@ -29,6 +29,9 @@ const Tours = ({navigation,route}) => {
     data.map(tour => {
       if (id == tour.id) {
         let props = {
+          id: tour.id,
+          endpoint: 'tour',
+          category: 'Tour',
           Categoria: tour.Categoria,
           Price: tour.Costo,
           Descripcion: tour.Descripcion,

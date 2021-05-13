@@ -29,6 +29,9 @@ const TouristSites = ({navigation}) => {
     data.map(place => {
       if (id == place.id) {
         let props = {
+          id: place.id,
+          endpoint: 'sitio',
+          category: 'SitioTuristico',
           Categoria: place.Categoria,
           Price: place.CostoEntrada,
           Descripcion: place.Descripcion,

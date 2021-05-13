@@ -29,6 +29,9 @@ const Restaurants = ({navigation, route}) => {
     data.map(restaurant => {
       if (id == restaurant.id) {
         let props = {
+          id:restaurant.id,
+          endpoint:'restaurante',
+          category:'Restaurante',
           Categoria: restaurant.Categoria,
           Price: restaurant.CostoMax,
           Descripcion: restaurant.Descripcion,

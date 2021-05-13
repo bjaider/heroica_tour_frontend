@@ -29,6 +29,9 @@ const Souvenirs = ({navigation}) => {
     data.map(souvenir => {
       if (id == souvenir.id) {
         let props = {
+          id:souvenir.id,
+          endpoint:'souvenir',
+          category:'Souvenir',
           Categoria: souvenir.Categoria,
           Price: souvenir.costoMax,
           Descripcion: souvenir.Descripcion,

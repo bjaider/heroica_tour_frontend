@@ -29,6 +29,9 @@ const Cars = ({navigation}) => {
     data.map(car => {
       if (id == car.id) {
         let props = {
+          id: car.id,
+          endpoint: 'auto',
+          category: 'Auto',
           Categoria: 'Autos',
           Price: car.CostoPerDay,
           Descripcion: car.Descripcion,
