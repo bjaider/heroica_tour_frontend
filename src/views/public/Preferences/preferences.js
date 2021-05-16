@@ -42,7 +42,7 @@ const Preferences = ({navigation, route}) => {
       .post(url, fields)
       .then(function (response) {
         console.log(response.data);
-        navigation.navigate('Home');
+        navigation.navigate('Login');
       })
       .catch(function (error) {
         console.log(error);
