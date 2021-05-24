@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 import {
   Text,
   View,
@@ -29,9 +29,9 @@ const Restaurants = ({navigation, route}) => {
     data.map(restaurant => {
       if (id == restaurant.id) {
         let props = {
-          id:restaurant.id,
-          endpoint:'restaurante',
-          category:'Restaurante',
+          id: restaurant.id,
+          endpoint: 'restaurante',
+          category: 'Restaurante',
           Categoria: restaurant.Categoria,
           Price: restaurant.CostoMax,
           Descripcion: restaurant.Descripcion,

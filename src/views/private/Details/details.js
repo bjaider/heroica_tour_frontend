@@ -63,6 +63,13 @@ const Restaurants = ({navigation, route}) => {
           Rate: rating,
           Descripcion: opinion,
         };
+      case 'Trabajadores':
+        return {
+          Usuario: syncStorage.get('clientID'),
+          Trabajador: data.id,
+          Rate: rating,
+          Descripcion: opinion,
+        };
 
       default:
         break;
